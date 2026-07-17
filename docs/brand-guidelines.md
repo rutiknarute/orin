@@ -1,0 +1,140 @@
+# Orin Brand Guidelines v1.0
+
+> Last updated: July 16, 2026
+> Status: Product source of truth
+
+## Quick Reference
+
+| Element | Value |
+|---------|-------|
+| Primary Color | #0A172D |
+| Secondary Color | #33415C |
+| Accent Color | #064AE4 |
+| Heading Font | Space Grotesk |
+| Body Font | DM Sans |
+| Voice | Clear, composed, evidence-led |
+
+## 1. Brand Idea
+
+Orin turns fragmented supply-chain evidence into one connected, reviewable product record. The brand should feel structured enough for compliance teams and clear enough for supplier collaboration.
+
+**Primary message:** Every supplier answer. One trusted product record.
+
+**Supporting messages:**
+
+- See the complete evidence chain from raw material to finished product.
+- Find missing or conflicting information before it becomes an audit problem.
+- Turn documents into structured, reviewable product data.
+- Move from origin to compliance with a visible trail of evidence.
+
+## 2. Color Palette
+
+The palette is sampled from the supplied Orin identity board and extended with accessible product states.
+
+### Primary Colors
+
+| Name | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Orin Navy | #0A172D | rgb(10,23,45) | Navigation, primary text, high-trust surfaces |
+| Orin Navy Dark | #061126 | rgb(6,17,38) | Hover states, dark canvas |
+| Orin Navy Light | #13233F | rgb(19,35,63) | Elevated dark surfaces |
+
+### Secondary Colors
+
+| Name | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Slate | #33415C | rgb(51,65,92) | Secondary controls and labels |
+| Mist Blue | #DCE8FF | rgb(220,232,255) | Selected surfaces and highlights |
+
+### Accent Colors
+
+| Name | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Orin Blue | #064AE4 | rgb(6,74,228) | Primary CTAs, links, focus, data flow |
+| Orin Blue Light | #3E92F4 | rgb(62,146,244) | Dark-surface accents and progress |
+
+### Neutral Palette
+
+| Name | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Canvas | #F5F7FB | rgb(245,247,251) | App background |
+| Surface | #FFFFFF | rgb(255,255,255) | Cards and sheets |
+| Text | #111827 | rgb(17,24,39) | Primary content |
+| Muted Text | #5B667A | rgb(91,102,122) | Supporting content |
+| Border | #DDE4EE | rgb(221,228,238) | Dividers and component edges |
+
+### Semantic Colors
+
+| State | Hex | Usage |
+|-------|-----|-------|
+| Success | #14866D | Verified, complete, approved |
+| Warning | #B86F00 | Review needed, expiring, incomplete |
+| Error | #C83B4D | Conflict, failure, destructive action |
+| Info | #2463EB | Informational status and processing |
+
+### Accessibility
+
+- Use Orin Navy for body text on white and Canvas surfaces.
+- Use white text on Orin Navy and Orin Blue.
+- Never rely on status color alone; pair color with an icon and label.
+- Interactive focus rings use Orin Blue at a minimum 2px width.
+
+## 3. Typography
+
+```css
+--font-heading: 'Space Grotesk', system-ui, sans-serif;
+--font-body: 'DM Sans', system-ui, sans-serif;
+--font-mono: ui-monospace, 'SFMono-Regular', monospace;
+```
+
+| Element | Desktop | Mobile | Weight | Line Height |
+|---------|---------|--------|--------|-------------|
+| Display | 64px | 42px | 600 | 1.02 |
+| H1 | 48px | 34px | 600 | 1.08 |
+| H2 | 36px | 28px | 600 | 1.15 |
+| H3 | 24px | 22px | 600 | 1.25 |
+| Body | 16px | 16px | 400 | 1.55 |
+| Small | 14px | 14px | 500 | 1.45 |
+| Caption | 12px | 12px | 600 | 1.35 |
+
+Use Space Grotesk for concise hierarchy and product numbers. Use DM Sans for all reading and controls. Keep body copy under 72 characters per line.
+
+## 4. Logo Usage
+
+The supplied identity board is the source asset. Product surfaces show the full horizontal mark without redrawing, recoloring, stretching, rotating, or applying effects.
+
+- Preserve the logo's original proportions and colors.
+- Keep clear space equal to the height of the Orin mark.
+- Use the light-background logo on white or Canvas.
+- Use the supplied reversed logo treatment on Orin Navy.
+- Minimum full-logo width: 120px.
+
+## 5. Voice and Tone
+
+| Trait | We are | We are not |
+|-------|--------|------------|
+| Clear | Plain-language and specific | Regulatory jargon first |
+| Composed | Calm about risk | Alarmist or dramatic |
+| Evidence-led | Shows the source and next action | Makes unsupported claims |
+| Collaborative | Helps teams and suppliers move forward | Blaming or punitive |
+
+UI copy follows the pattern: **what happened → why it matters → what to do next**.
+
+## 6. Product Components
+
+- Buttons: 10-12px radius; primary blue; 44px minimum height.
+- Cards: 16-20px radius; visible border; restrained shadow.
+- Inputs: 12px radius; always-visible label; 46px minimum height.
+- Status pills: icon plus label; never color-only.
+- Icons: Phosphor outline set, 1.5-2px visual weight.
+- Motion: 160-280ms for UI state changes; transform and opacity only.
+
+## 7. Visual Language
+
+Use connected nodes, evidence layers, scanning lines, quiet grid textures, and structured product data. Avoid stock dashboard imagery, decorative blobs, excessive glassmorphism, and dense walls of metrics.
+
+## Changelog
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | July 16, 2026 | Initial product brand system derived from the supplied Orin identity |

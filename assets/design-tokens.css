@@ -1,0 +1,63 @@
+:root {
+  /* Primitive tokens */
+  --orin-navy-900: #061126;
+  --orin-navy-800: #0a172d;
+  --orin-navy-700: #13233f;
+  --orin-blue-700: #043dbd;
+  --orin-blue-600: #064ae4;
+  --orin-blue-500: #2463eb;
+  --orin-blue-400: #3e92f4;
+  --orin-blue-100: #dce8ff;
+  --orin-slate-700: #33415c;
+  --orin-slate-500: #5b667a;
+  --orin-slate-200: #dde4ee;
+  --orin-slate-100: #edf1f7;
+  --orin-slate-50: #f5f7fb;
+  --orin-white: #ffffff;
+  --orin-success-600: #14866d;
+  --orin-warning-600: #b86f00;
+  --orin-error-600: #c83b4d;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 999px;
+
+  --duration-fast: 160ms;
+  --duration-normal: 220ms;
+  --duration-slow: 320ms;
+
+  /* Semantic tokens */
+  --color-background: var(--orin-slate-50);
+  --color-surface: var(--orin-white);
+  --color-foreground: var(--orin-navy-800);
+  --color-muted-foreground: var(--orin-slate-500);
+  --color-primary: var(--orin-blue-600);
+  --color-primary-hover: var(--orin-blue-700);
+  --color-border: var(--orin-slate-200);
+  --color-success: var(--orin-success-600);
+  --color-warning: var(--orin-warning-600);
+  --color-error: var(--orin-error-600);
+  --color-focus: var(--orin-blue-500);
+
+  /* Component tokens */
+  --button-height: 2.75rem;
+  --button-radius: var(--radius-md);
+  --input-height: 2.875rem;
+  --input-radius: var(--radius-md);
+  --card-radius: var(--radius-lg);
+  --card-border: var(--color-border);
+  --shadow-card: 0 1px 2px rgb(10 23 45 / 0.04), 0 12px 32px rgb(10 23 45 / 0.055);
+  --shadow-float: 0 20px 60px rgb(6 17 38 / 0.15);
+}
