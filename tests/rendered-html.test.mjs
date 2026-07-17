@@ -35,6 +35,12 @@ test("server-renders the Orin product story", async () => {
   assert.match(html, /One trusted product record/);
   assert.match(html, /Open the demo workspace/);
   assert.match(html, /logo_orin_horizontal-wordmark_20260428_full-color\.png/);
+  assert.doesNotMatch(
+    html,
+    /class="hero-(?:copy|product-visual)"[^>]*style="[^"]*opacity\s*:\s*0/i,
+    "critical hero content must be visible in the first server-rendered HTML",
+  );
+  assert.doesNotMatch(html, /orin\.example/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
@@ -49,7 +55,7 @@ test("ships the supplied Orin brand asset and product metadata", async () => {
 
   assert.match(page, /Every supplier answer/);
   assert.match(layout, /Orin — Connected product evidence/);
-  assert.doesNotMatch(packageJson, /react-loading-skeleton/);
+  assert.doesNotMatch(packageJson, /react-loading-skeleton|"motion"/);
 });
 
 test("rejects incorrect demo credentials and accepts the demo account", async () => {

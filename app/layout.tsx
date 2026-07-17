@@ -15,7 +15,6 @@ const body = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://orin.example"),
   title: {
     default: "Orin — Connected product evidence",
     template: "%s — Orin",

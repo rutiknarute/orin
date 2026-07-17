@@ -101,7 +101,7 @@ Use Space Grotesk for concise hierarchy and product numbers. Use DM Sans for all
 
 ## 4. Logo Usage
 
-The dedicated Orin wordmark and standalone mark are the approved product assets. Use the full wordmark in headers, footers, sign-in surfaces, and branded navigation. Use the standalone mark for favicons, app icons, and compact placements.
+The dedicated transparent Orin wordmark and standalone mark are the approved product assets. Use the full wordmark in headers, footers, sign-in surfaces, and branded navigation. Use the standalone mark for favicons, app icons, and compact placements.
 
 - Preserve the logo's original proportions and colors.
 - Keep clear space equal to the height of the Orin mark.
@@ -139,5 +139,6 @@ Use connected nodes, evidence layers, scanning lines, quiet grid textures, and s
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.2 | July 16, 2026 | Replaced RGB exports with lighter transparent PNG assets |
 | 1.1 | July 16, 2026 | Replaced identity-board crops with the dedicated wordmark and standalone mark |
 | 1.0 | July 16, 2026 | Initial product brand system derived from the supplied Orin identity |

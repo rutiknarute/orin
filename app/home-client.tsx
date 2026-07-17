@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   Check,
@@ -21,11 +20,6 @@ import {
 import { MarketingHeader } from "@/components/marketing-header";
 import { BrandLogo } from "@/components/brand-logo";
 
-const reveal = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const supplierRoles = [
   { label: "Raw material", name: "Fina Fiber", icon: StackSimple },
   { label: "Fabric mill", name: "NovaTex", icon: Factory },
@@ -36,10 +30,6 @@ const supplierRoles = [
 ];
 
 export function HomeClient() {
-  const reducedMotion = useReducedMotion();
-  const viewport = { once: true, amount: 0.18 };
-  const transition = { duration: reducedMotion ? 0 : 0.45, ease: "easeOut" as const };
-
   return (
     <div className="marketing-page">
       <MarketingHeader />
@@ -49,13 +39,7 @@ export function HomeClient() {
           <div className="hero-orb hero-orb--one" aria-hidden="true" />
           <div className="hero-orb hero-orb--two" aria-hidden="true" />
           <div className="marketing-container hero-layout">
-            <motion.div
-              className="hero-copy"
-              initial={reducedMotion ? false : "hidden"}
-              animate="visible"
-              variants={reveal}
-              transition={transition}
-            >
+            <div className="hero-copy">
               <div className="eyebrow-pill">
                 <span className="eyebrow-pill__dot" />
                 Traceability intelligence for fashion
@@ -82,14 +66,9 @@ export function HomeClient() {
                 <span><Check size={15} weight="bold" /> Human review built in</span>
                 <span><Check size={15} weight="bold" /> Llama-ready architecture</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="hero-product-visual"
-              initial={reducedMotion ? false : { opacity: 0, x: 24, scale: 0.98 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: reducedMotion ? 0 : 0.65, delay: reducedMotion ? 0 : 0.08, ease: "easeOut" }}
-            >
+            <div className="hero-product-visual">
               <div className="hero-window">
                 <div className="hero-window__topbar">
                   <div>
@@ -166,7 +145,7 @@ export function HomeClient() {
                 <span><ShieldCheck size={19} weight="duotone" /></span>
                 <div><strong>Evidence verified</strong><small>Certificate matched</small></div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -192,14 +171,7 @@ export function HomeClient() {
 
         <section className="marketing-section supply-section" id="product">
           <div className="marketing-container">
-            <motion.div
-              className="section-heading section-heading--split"
-              initial={reducedMotion ? false : "hidden"}
-              whileInView="visible"
-              viewport={viewport}
-              variants={reveal}
-              transition={transition}
-            >
+            <div className="section-heading section-heading--split">
               <div>
                 <span className="section-kicker">The complete evidence chain</span>
                 <h2>Trace the product, not the paperwork.</h2>
@@ -208,19 +180,15 @@ export function HomeClient() {
                 Orin organizes every company, certificate, and claim around the product it proves—so teams can
                 see the chain, the evidence, and the gaps in one view.
               </p>
-            </motion.div>
+            </div>
 
             <div className="supplier-chain" role="list" aria-label="Example Orin supply chain">
               <div className="supplier-chain__flow" aria-hidden="true"><span /></div>
-              {supplierRoles.map(({ label, name, icon: Icon, warning }, index) => (
-                <motion.div
+              {supplierRoles.map(({ label, name, icon: Icon, warning }) => (
+                <div
                   className={`supplier-card ${warning ? "supplier-card--warning" : ""}`}
                   role="listitem"
                   key={label}
-                  initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewport}
-                  transition={{ duration: reducedMotion ? 0 : 0.35, delay: reducedMotion ? 0 : index * 0.045 }}
                 >
                   <span className="supplier-card__icon"><Icon size={22} weight="duotone" /></span>
                   <small>{label}</small>
@@ -229,7 +197,7 @@ export function HomeClient() {
                     {warning ? <WarningCircle size={14} weight="fill" /> : <CheckCircle size={14} weight="fill" />}
                     {warning ? "1 gap" : "Verified"}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -237,18 +205,11 @@ export function HomeClient() {
 
         <section className="marketing-section how-section" id="how-it-works">
           <div className="marketing-container">
-            <motion.div
-              className="section-heading section-heading--center"
-              initial={reducedMotion ? false : "hidden"}
-              whileInView="visible"
-              viewport={viewport}
-              variants={reveal}
-              transition={transition}
-            >
+            <div className="section-heading section-heading--center">
               <span className="section-kicker">From inbox to evidence</span>
               <h2>A cleaner path from document to decision.</h2>
               <p>Designed for the real work compliance and supply-chain teams do every day.</p>
-            </motion.div>
+            </div>
 
             <div className="steps-grid">
               {[
@@ -269,14 +230,7 @@ export function HomeClient() {
 
         <section className="marketing-section intelligence-section">
           <div className="marketing-container intelligence-layout">
-            <motion.div
-              className="intelligence-copy"
-              initial={reducedMotion ? false : "hidden"}
-              whileInView="visible"
-              viewport={viewport}
-              variants={reveal}
-              transition={transition}
-            >
+            <div className="intelligence-copy">
               <span className="section-kicker section-kicker--dark">Document intelligence</span>
               <h2>AI does the reading. Your team keeps the judgment.</h2>
               <p>
@@ -291,7 +245,7 @@ export function HomeClient() {
               <Link className="button-link button-link--light button-link--large" href="/login">
                 Try document analysis <ArrowRight size={18} weight="bold" />
               </Link>
-            </motion.div>
+            </div>
 
             <div className="extraction-panel">
               <div className="extraction-panel__head">

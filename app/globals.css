@@ -149,16 +149,16 @@ h4 {
 }
 
 .brand-logo--wordmark .brand-logo__crop {
-  aspect-ratio: 938 / 430;
+  aspect-ratio: 934 / 429;
 }
 
 .brand-logo--wordmark .brand-logo__source {
   position: absolute;
-  width: 133.69%;
+  width: 134.26%;
   max-width: none;
   height: auto;
-  left: -16.63%;
-  top: -93.95%;
+  left: -17.02%;
+  top: -94.41%;
 }
 
 .brand-logo--reverse {
@@ -174,16 +174,16 @@ h4 {
 }
 
 .brand-logo--mark .brand-logo__crop {
-  aspect-ratio: 650 / 666;
+  aspect-ratio: 649 / 663;
 }
 
 .brand-logo--mark .brand-logo__source {
   position: absolute;
-  width: 192.92%;
+  width: 193.22%;
   max-width: none;
   height: auto;
-  left: -46.46%;
-  top: -37.54%;
+  left: -46.53%;
+  top: -37.86%;
 }
 
 .button,
