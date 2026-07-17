@@ -7,9 +7,9 @@
 ---
 
 **Project:** Orin
-**Generated:** 2026-07-16 17:30:27
-**Category:** E-signature / Document Workflow
-**Design Dials:** Variance 7/10 (Balanced / Modern) | Motion 6/10 (Standard) | Density 7/10 (Standard)
+**Generated:** 2026-07-16 18:47:35
+**Category:** AI/Chatbot Platform
+**Design Dials:** Variance 8/10 (Bold / Asymmetric) | Motion 4/10 (Standard) | Density 5/10 (Standard)
 
 ---
 
@@ -19,34 +19,34 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#1E293B` | `--color-primary` |
+| Primary | `#18181B` | `--color-primary` |
 | On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#334155` | `--color-secondary` |
-| Accent/CTA | `#2563EB` | `--color-accent` |
-| Background | `#F8FAFC` | `--color-background` |
-| Foreground | `#0F172A` | `--color-foreground` |
-| Muted | `#F1F2F3` | `--color-muted` |
-| Border | `#E4E5E7` | `--color-border` |
+| Secondary | `#3F3F46` | `--color-secondary` |
+| Accent/CTA | `#EC4899` | `--color-accent` |
+| Background | `#FAFAFA` | `--color-background` |
+| Foreground | `#09090B` | `--color-foreground` |
+| Muted | `#E8ECF0` | `--color-muted` |
+| Border | `#E4E4E7` | `--color-border` |
 | Destructive | `#DC2626` | `--color-destructive` |
-| Ring | `#1E293B` | `--color-ring` |
+| Ring | `#18181B` | `--color-ring` |
 
-**Color Notes:** Document grey + scan blue
+**Color Notes:** Editorial black + accent pink
 
 ### Typography
 
-- **Heading Font:** Space Grotesk
-- **Body Font:** DM Sans
-- **Mood:** tech, startup, modern, innovative, bold, futuristic
-- **Google Fonts:** [Space Grotesk + DM Sans](https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap)
+- **Heading Font:** Playfair Display
+- **Body Font:** Inter
+- **Mood:** elegant, luxury, sophisticated, timeless, premium, editorial
+- **Google Fonts:** [Playfair Display + Inter](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 ```
 
 ### Spacing Variables
 
-*Density: 7/10 — Standard*
+*Density: 5/10 — Standard*
 
 | Token | Value | Usage |
 |-------|-------|-------|
@@ -76,7 +76,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #2563EB;
+  background: #EC4899;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -93,8 +93,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #1E293B;
-  border: 2px solid #1E293B;
+  color: #18181B;
+  border: 2px solid #18181B;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -107,7 +107,7 @@
 
 ```css
 .card {
-  background: #F8FAFC;
+  background: #FAFAFA;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -133,9 +133,9 @@
 }
 
 .input:focus {
-  border-color: #1E293B;
+  border-color: #18181B;
   outline: none;
-  box-shadow: 0 0 0 3px #1E293B20;
+  box-shadow: 0 0 0 3px #18181B20;
 }
 ```
 
@@ -161,44 +161,44 @@
 
 ## Style Guidelines
 
-**Style:** Soft UI Evolution
+**Style:** Bento Grids
 
-**Keywords:** Evolved soft UI, better contrast, modern aesthetics, subtle depth, accessibility-focused, improved shadows, hybrid
+**Keywords:** Apple-style, modular, cards, organized, clean, hierarchy, grid, rounded, soft
 
-**Best For:** Modern enterprise apps, SaaS platforms, health/wellness, modern business tools, professional, hybrid
+**Best For:** Product features, dashboards, personal sites, marketing summaries, galleries
 
-**Key Effects:** Improved shadows (softer than flat, clearer than neumorphism), modern (200-300ms), focus visible, WCAG AA/AAA
+**Key Effects:** Hover scale (1.02), soft shadow expansion, smooth layout shifts, content reveal
 
 ### Page Pattern
 
-**Pattern Name:** AI Personalization Landing
+**Pattern Name:** Bento Grid Showcase
 
-- **Conversion Strategy:** 20%+ conversion with personalization. Requires analytics integration. Fallback for new users.
-- **CTA Placement:** Context-aware placement based on user segment
-- **Section Order:** 1. Dynamic hero (personalized), 2. Relevant features, 3. Tailored testimonials, 4. Smart CTA
+- **Conversion Strategy:** Scannable value props. High information density without clutter. Mobile stack.
+- **CTA Placement:** Floating Action Button or Bottom of Grid
+- **Section Order:** 1. Hero, 2. Bento Grid (Key Features), 3. Detail Cards, 4. Tech Specs, 5. CTA
 
 ---
 
 ## Motion
 
-**Page Transition** (Standard) — Trigger: route change | Duration: 400-600ms | Easing: `power2.inOut`
+**Stagger List** (Standard) — Trigger: load or scroll | Duration: 300-450ms | Easing: `back.out(1.4)`
 
 ```js
-const tl = gsap.timeline(); tl.to('.transition-overlay', { yPercent: 0, duration: 0.4, ease: 'power2.inOut' }).call(navigate).to('.transition-overlay', { yPercent: -100, duration: 0.4, ease: 'power2.inOut', delay: 0.1 });
+gsap.from('.grid-item', { opacity: 0, scale: 0.92, y: 16, duration: 0.4, stagger: { each: 0.06, from: 'start', grid: 'auto' }, ease: 'back.out(1.4)' });
 ```
 
-**Framework notes:** Keep the overlay element mounted at the layout root (outside the page component) so it survives the route swap
+**Framework notes:** grid: 'auto' lets GSAP infer rows/columns from a CSS grid layout for a natural wave stagger
 
-- ✅ Show a lightweight loading indicator if the destination route's data fetch outlasts the overlay
-- ❌ Don't tie the overlay's reveal directly to data-fetch completion without a max-wait timeout; a slow API stalls the whole transition
-- ⚡ Prefer CSS transform (yPercent) over top/left to keep the overlay animation on the compositor thread
+- ✅ Combine with from: 'center' for a bento-grid layout to draw the eye inward first
+- ❌ Don't use back.out on dense data tables; the overshoot reads as sloppy on informational UI
+- ⚡ Group DOM writes; avoid interleaving layout reads (getBoundingClientRect) between staggered tweens
 
 ---
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Flat design without depth
-- ❌ Text-heavy pages
+- ❌ Heavy chrome
+- ❌ Slow response feedback
 
 ### Additional Forbidden Patterns
 

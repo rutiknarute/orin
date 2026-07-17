@@ -1,4 +1,4 @@
-# Orin Brand Guidelines v1.0
+# Orin Brand Guidelines v2.0
 
 > Last updated: July 16, 2026
 > Status: Product source of truth
@@ -10,8 +10,8 @@
 | Primary Color | #0A172D |
 | Secondary Color | #33415C |
 | Accent Color | #064AE4 |
-| Heading Font | Space Grotesk |
-| Body Font | DM Sans |
+| Editorial Font | Playfair Display |
+| Product/UI Font | Inter |
 | Voice | Clear, composed, evidence-led |
 
 ## 1. Brand Idea
@@ -82,22 +82,22 @@ The palette is sampled from the supplied Orin identity board and extended with a
 ## 3. Typography
 
 ```css
---font-heading: 'Space Grotesk', system-ui, sans-serif;
---font-body: 'DM Sans', system-ui, sans-serif;
+--font-heading: 'Playfair Display', Georgia, serif;
+--font-body: 'Inter', system-ui, sans-serif;
 --font-mono: ui-monospace, 'SFMono-Regular', monospace;
 ```
 
 | Element | Desktop | Mobile | Weight | Line Height |
 |---------|---------|--------|--------|-------------|
-| Display | 64px | 42px | 600 | 1.02 |
-| H1 | 48px | 34px | 600 | 1.08 |
-| H2 | 36px | 28px | 600 | 1.15 |
+| Display | 76px | 46px | 500 | 0.98 |
+| H1 | 54px | 38px | 500 | 1.04 |
+| H2 | 42px | 30px | 500 | 1.12 |
 | H3 | 24px | 22px | 600 | 1.25 |
 | Body | 16px | 16px | 400 | 1.55 |
 | Small | 14px | 14px | 500 | 1.45 |
 | Caption | 12px | 12px | 600 | 1.35 |
 
-Use Space Grotesk for concise hierarchy and product numbers. Use DM Sans for all reading and controls. Keep body copy under 72 characters per line.
+Use Playfair Display for marketing headlines and major editorial moments. Use Inter for product screens, data, labels, controls, and all reading. This division keeps the fashion expression distinctive without reducing operational clarity. Keep body copy under 72 characters per line.
 
 ## 4. Logo Usage
 
@@ -124,21 +124,22 @@ UI copy follows the pattern: **what happened → why it matters → what to do n
 
 ## 6. Product Components
 
-- Buttons: 10-12px radius; primary blue; 44px minimum height.
-- Cards: 16-20px radius; visible border; restrained shadow.
-- Inputs: 12px radius; always-visible label; 46px minimum height.
+- Buttons: 14px radius; primary blue; 48px default height and clear pressed state.
+- Cards: 22px radius; visible hairline border; restrained layered shadow.
+- Inputs: 14px radius; always-visible label; 50px minimum height.
 - Status pills: icon plus label; never color-only.
 - Icons: Phosphor outline set, 1.5-2px visual weight.
 - Motion: 160-280ms for UI state changes; transform and opacity only.
 
 ## 7. Visual Language
 
-Use connected nodes, evidence layers, scanning lines, quiet grid textures, and structured product data. Avoid stock dashboard imagery, decorative blobs, excessive glassmorphism, and dense walls of metrics.
+Use an asymmetric editorial grid, connected nodes, evidence layers, scanning lines, quiet technical textures, and modular product data. Let typography, negative space, and one cobalt accent carry the composition. Avoid stock dashboard imagery, decorative blobs, excessive glassmorphism, generic equal-sized cards, and dense walls of metrics.
 
 ## Changelog
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.0 | July 16, 2026 | Introduced the editorial-bento web system, Playfair Display + Inter typography, larger controls, and refined surface tokens |
 | 1.2 | July 16, 2026 | Replaced RGB exports with lighter transparent PNG assets |
 | 1.1 | July 16, 2026 | Replaced identity-board crops with the dedicated wordmark and standalone mark |
 | 1.0 | July 16, 2026 | Initial product brand system derived from the supplied Orin identity |

@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Space_Grotesk } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
-const body = DM_Sans({
+const body = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
