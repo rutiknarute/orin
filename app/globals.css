@@ -131,37 +131,59 @@ h4 {
 
 .brand-logo {
   position: relative;
-  display: block;
-  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: none;
 }
 
-.brand-logo--light {
+.brand-logo--wordmark {
   width: 154px;
-  aspect-ratio: 855 / 290;
 }
 
-.brand-logo--light .brand-logo__source {
+.brand-logo__crop {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.brand-logo--wordmark .brand-logo__crop {
+  aspect-ratio: 938 / 430;
+}
+
+.brand-logo--wordmark .brand-logo__source {
   position: absolute;
-  width: 179.65%;
+  width: 133.69%;
   max-width: none;
-  height: 353.1%;
-  left: -39.77%;
-  top: -31.03%;
+  height: auto;
+  left: -16.63%;
+  top: -93.95%;
 }
 
 .brand-logo--reverse {
-  width: 148px;
-  aspect-ratio: 314 / 135;
+  width: 166px;
+  padding: 7px 9px;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 12px;
+  background: var(--orin-white);
 }
 
-.brand-logo--reverse .brand-logo__source {
+.brand-logo--mark {
+  width: 48px;
+}
+
+.brand-logo--mark .brand-logo__crop {
+  aspect-ratio: 650 / 666;
+}
+
+.brand-logo--mark .brand-logo__source {
   position: absolute;
-  width: 489.17%;
+  width: 192.92%;
   max-width: none;
-  height: 758.52%;
-  left: -83.76%;
-  top: -388.89%;
+  height: auto;
+  left: -46.46%;
+  top: -37.54%;
 }
 
 .button,
@@ -3778,7 +3800,7 @@ h4 {
 @media (max-width: 640px) {
   .marketing-container,
   .passport-container { width: calc(100% - 32px); }
-  .brand-logo--light { width: 138px; }
+  .brand-logo--wordmark { width: 138px; }
   .hero-section { padding: 112px 0 72px; }
   .hero-copy { text-align: left; }
   .hero-copy h1 { margin-inline: 0; font-size: clamp(2.75rem, 14vw, 4rem); }

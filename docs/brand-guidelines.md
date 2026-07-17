@@ -101,13 +101,15 @@ Use Space Grotesk for concise hierarchy and product numbers. Use DM Sans for all
 
 ## 4. Logo Usage
 
-The supplied identity board is the source asset. Product surfaces show the full horizontal mark without redrawing, recoloring, stretching, rotating, or applying effects.
+The dedicated Orin wordmark and standalone mark are the approved product assets. Use the full wordmark in headers, footers, sign-in surfaces, and branded navigation. Use the standalone mark for favicons, app icons, and compact placements.
 
 - Preserve the logo's original proportions and colors.
 - Keep clear space equal to the height of the Orin mark.
-- Use the light-background logo on white or Canvas.
-- Use the supplied reversed logo treatment on Orin Navy.
+- Use the supplied assets on white, Canvas, or a clean white surface tile.
+- On Orin Navy, place the full-color logo on a white surface tile because a reversed variant has not been supplied.
 - Minimum full-logo width: 120px.
+- Minimum standalone-mark width: 32px.
+- Approved files: `public/logo_orin_horizontal-wordmark_20260428_full-color.png` and `public/logo_orin_icon-mark_20260428_full-color.png`.
 
 ## 5. Voice and Tone
 
@@ -137,4 +139,5 @@ Use connected nodes, evidence layers, scanning lines, quiet grid textures, and s
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | July 16, 2026 | Replaced identity-board crops with the dedicated wordmark and standalone mark |
 | 1.0 | July 16, 2026 | Initial product brand system derived from the supplied Orin identity |

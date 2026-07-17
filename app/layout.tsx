@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   },
   description:
     "Orin connects supply-chain evidence and turns supplier documents into a trusted product record.",
+  icons: {
+    icon: "/logo_orin_icon-mark_20260428_full-color.png",
+    apple: "/logo_orin_icon-mark_20260428_full-color.png",
+  },
   openGraph: {
     title: "Orin — Connected product evidence",
     description: "Every supplier answer. One trusted product record.",

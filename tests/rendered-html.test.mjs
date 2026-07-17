@@ -34,12 +34,13 @@ test("server-renders the Orin product story", async () => {
   assert.match(html, /Every supplier answer/);
   assert.match(html, /One trusted product record/);
   assert.match(html, /Open the demo workspace/);
-  assert.match(html, /orin-brand-board\.png/);
+  assert.match(html, /logo_orin_horizontal-wordmark_20260428_full-color\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
 test("ships the supplied Orin brand asset and product metadata", async () => {
-  await access(new URL("../public/orin-brand-board.png", import.meta.url));
+  await access(new URL("../public/logo_orin_horizontal-wordmark_20260428_full-color.png", import.meta.url));
+  await access(new URL("../public/logo_orin_icon-mark_20260428_full-color.png", import.meta.url));
   const [page, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
