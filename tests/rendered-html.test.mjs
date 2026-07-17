@@ -34,6 +34,9 @@ test("server-renders the Orin product story", async () => {
   assert.match(html, /Every supplier answer/);
   assert.match(html, /One trusted product record/);
   assert.match(html, /Open the demo workspace/);
+  assert.match(html, /Demo fashion network/);
+  assert.match(html, /Fictional companies modeled in Orin/);
+  assert.match(html, /Northline Studio/);
   assert.match(html, /logo_orin_horizontal-wordmark_20260428_full-color\.png/);
   assert.doesNotMatch(
     html,

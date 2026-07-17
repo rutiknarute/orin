@@ -29,6 +29,17 @@ const supplierRoles = [
   { label: "Packaging", name: "Packwise", icon: CirclesThreePlus },
 ];
 
+const demoFashionClients = [
+  { mark: "NS", name: "Northline Studio", focus: "Outerwear", style: "structured" },
+  { mark: "A&L", name: "Aster & Loom", focus: "Circular knitwear", style: "editorial" },
+  { mark: "VF", name: "Vela Form", focus: "Contemporary essentials", style: "minimal" },
+  { mark: "F+F", name: "Field + Found", focus: "Natural fibers", style: "grounded" },
+  { mark: "N", name: "Noema Atelier", focus: "Modern tailoring", style: "editorial" },
+  { mark: "MT", name: "Morrow Thread", focus: "Everyday apparel", style: "structured" },
+  { mark: "AG", name: "Arcline Goods", focus: "Technical accessories", style: "minimal" },
+  { mark: "LW", name: "Lune Works", focus: "Responsible denim", style: "grounded" },
+];
+
 export function HomeClient() {
   return (
     <div className="marketing-page">
@@ -145,6 +156,48 @@ export function HomeClient() {
                 <span><ShieldCheck size={19} weight="duotone" /></span>
                 <div><strong>Evidence verified</strong><small>Certificate matched</small></div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="client-network" aria-labelledby="demo-network-title">
+          <div className="marketing-container client-network__header">
+            <span>Demo fashion network</span>
+            <p id="demo-network-title">Fictional companies modeled in Orin</p>
+          </div>
+          <p className="sr-only" id="demo-network-instructions">
+            Focus or hover over the moving company list to pause it.
+          </p>
+          <div
+            className="client-ticker"
+            role="region"
+            aria-label="Fictional fashion companies in the Orin demo"
+            aria-describedby="demo-network-instructions"
+            tabIndex={0}
+          >
+            <div className="client-ticker__track">
+              {[false, true].map((duplicate) => (
+                <div
+                  className="client-ticker__group"
+                  role={duplicate ? undefined : "list"}
+                  aria-hidden={duplicate ? "true" : undefined}
+                  key={duplicate ? "duplicate" : "primary"}
+                >
+                  {demoFashionClients.map(({ mark, name, focus, style }) => (
+                    <div
+                      className={`client-wordmark client-wordmark--${style}`}
+                      role={duplicate ? undefined : "listitem"}
+                      key={`${duplicate ? "duplicate" : "primary"}-${name}`}
+                    >
+                      <span className="client-wordmark__mark" aria-hidden="true">{mark}</span>
+                      <span>
+                        <strong>{name}</strong>
+                        <small>{focus}</small>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </section>
