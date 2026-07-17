@@ -6216,3 +6216,49 @@ h4 {
     padding: 28px;
   }
 }
+
+/* Compact logo scale: preserve the supplied artwork and its clear space. */
+.brand-logo--wordmark {
+  width: 124px;
+}
+
+.brand-logo--reverse {
+  width: 136px;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.marketing-brand-link {
+  min-width: 126px;
+}
+
+.marketing-brand-link .brand-logo--wordmark,
+.passport-header__inner .brand-logo {
+  width: 120px;
+}
+
+.workspace-logo-link .brand-logo,
+.login-story__brand .brand-logo {
+  width: 136px;
+}
+
+.workspace-mobile-header .brand-logo {
+  width: 112px;
+}
+
+.marketing-footer__inner .brand-logo,
+.passport-footer .brand-logo {
+  width: 112px;
+}
+
+@media (max-width: 640px) {
+  .marketing-brand-link {
+    min-width: 118px;
+  }
+
+  .marketing-brand-link .brand-logo--wordmark,
+  .login-mobile-brand .brand-logo,
+  .passport-header__inner .brand-logo {
+    width: 112px;
+  }
+}
