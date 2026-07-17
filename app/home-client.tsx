@@ -30,14 +30,14 @@ const supplierRoles = [
 ];
 
 const demoFashionClients = [
-  { mark: "NS", name: "Northline Studio", focus: "Outerwear", style: "structured" },
-  { mark: "A&L", name: "Aster & Loom", focus: "Circular knitwear", style: "editorial" },
-  { mark: "VF", name: "Vela Form", focus: "Contemporary essentials", style: "minimal" },
-  { mark: "F+F", name: "Field + Found", focus: "Natural fibers", style: "grounded" },
-  { mark: "N", name: "Noema Atelier", focus: "Modern tailoring", style: "editorial" },
-  { mark: "MT", name: "Morrow Thread", focus: "Everyday apparel", style: "structured" },
-  { mark: "AG", name: "Arcline Goods", focus: "Technical accessories", style: "minimal" },
-  { mark: "LW", name: "Lune Works", focus: "Responsible denim", style: "grounded" },
+  { mark: "NS", name: "Northline Studio", style: "structured" },
+  { mark: "A&L", name: "Aster & Loom", style: "editorial" },
+  { mark: "VF", name: "Vela Form", style: "minimal" },
+  { mark: "F+F", name: "Field + Found", style: "grounded" },
+  { mark: "N", name: "Noema Atelier", style: "editorial" },
+  { mark: "MT", name: "Morrow Thread", style: "structured" },
+  { mark: "AG", name: "Arcline Goods", style: "minimal" },
+  { mark: "LW", name: "Lune Works", style: "grounded" },
 ];
 
 export function HomeClient() {
@@ -160,11 +160,7 @@ export function HomeClient() {
           </div>
         </section>
 
-        <section className="client-network" aria-labelledby="demo-network-title">
-          <div className="marketing-container client-network__header">
-            <span>Demo fashion network</span>
-            <p id="demo-network-title">Fictional companies modeled in Orin</p>
-          </div>
+        <section className="client-network" aria-label="Fashion company logos">
           <p className="sr-only" id="demo-network-instructions">
             Focus or hover over the moving company list to pause it.
           </p>
@@ -183,17 +179,14 @@ export function HomeClient() {
                   aria-hidden={duplicate ? "true" : undefined}
                   key={duplicate ? "duplicate" : "primary"}
                 >
-                  {demoFashionClients.map(({ mark, name, focus, style }) => (
+                  {demoFashionClients.map(({ mark, name, style }) => (
                     <div
                       className={`client-wordmark client-wordmark--${style}`}
                       role={duplicate ? undefined : "listitem"}
                       key={`${duplicate ? "duplicate" : "primary"}-${name}`}
                     >
                       <span className="client-wordmark__mark" aria-hidden="true">{mark}</span>
-                      <span>
-                        <strong>{name}</strong>
-                        <small>{focus}</small>
-                      </span>
+                      <strong>{name}</strong>
                     </div>
                   ))}
                 </div>
