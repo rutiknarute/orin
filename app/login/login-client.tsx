@@ -67,7 +67,6 @@ export function LoginClient() {
   return (
     <main className="login-page">
       <section className="login-story" aria-label="Orin product overview">
-        <div className="login-story__grid" aria-hidden="true" />
         <div className="login-story__content">
           <span className="login-story__eyebrow"><span /> Demo workspace</span>
           <h1>Follow every answer back to its source.</h1>

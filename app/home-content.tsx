@@ -44,9 +44,6 @@ export function HomeContent() {
       <MarketingHeader />
       <main>
         <section className="hero-section">
-          <div className="hero-grid" aria-hidden="true" />
-          <div className="hero-orb hero-orb--one" aria-hidden="true" />
-          <div className="hero-orb hero-orb--two" aria-hidden="true" />
           <div className="marketing-container hero-layout">
             <div className="hero-copy">
               <div className="eyebrow-pill">
@@ -323,7 +320,6 @@ export function HomeContent() {
 
         <section className="marketing-section final-cta-section">
           <div className="marketing-container final-cta">
-            <div className="final-cta__grid" aria-hidden="true" />
             <span className="section-kicker section-kicker--dark">See the connected record</span>
             <h2>Start with the product that needs an answer today.</h2>
             <p>Use the demo workspace to follow its evidence chain, review documents, and preview the passport.</p>

@@ -36,7 +36,6 @@ export function PassportView({
 
       <main>
         <section className="passport-hero">
-          <div className="passport-hero__grid" aria-hidden="true" />
           <div className="passport-container passport-hero__inner">
             <div className="passport-product-art" aria-label={`${product.name} abstract material preview`}>
               <span className="passport-product-art__tag">ORIN / {product.id}</span>
