@@ -288,7 +288,6 @@ h4 {
   height: 82px;
   border-bottom: 1px solid rgb(221 228 238 / 0.75);
   background: rgb(255 255 255 / 0.84);
-  backdrop-filter: blur(18px);
 }
 
 .marketing-header__inner {
@@ -383,7 +382,6 @@ h4 {
 .hero-orb {
   position: absolute;
   border-radius: 999px;
-  filter: blur(2px);
   pointer-events: none;
 }
 
@@ -836,7 +834,6 @@ h4 {
   border-radius: 13px;
   background: rgb(255 255 255 / 0.94);
   box-shadow: var(--shadow-float);
-  backdrop-filter: blur(14px);
   animation: float-card 5s ease-in-out infinite;
 }
 
@@ -1565,7 +1562,6 @@ h4 {
   border: 1px solid rgb(255 255 255 / 0.11);
   border-radius: 18px;
   background: rgb(255 255 255 / 0.055);
-  backdrop-filter: blur(12px);
 }
 
 .login-trace-card__header {
@@ -3501,7 +3497,6 @@ h4 {
   height: 72px;
   border-bottom: 1px solid var(--color-border);
   background: rgb(255 255 255 / 0.9);
-  backdrop-filter: blur(16px);
 }
 
 .passport-header__inner {
@@ -3842,9 +3837,9 @@ h4 {
 
   .workspace-sidebar { display: none; }
   .workspace-main { margin-left: 0; padding-top: 64px; padding-bottom: 76px; }
-  .workspace-mobile-header { position: fixed; z-index: var(--z-nav); inset: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--color-border); background: rgb(255 255 255 / 0.94); backdrop-filter: blur(16px); }
+  .workspace-mobile-header { position: fixed; z-index: var(--z-nav); inset: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--color-border); background: rgb(255 255 255 / 0.94); }
   .workspace-mobile-header .brand-logo { width: 128px; }
-  .workspace-bottom-nav { position: fixed; z-index: var(--z-nav); inset: auto 0 0; min-height: 66px; display: grid; grid-template-columns: repeat(4, 1fr); padding-bottom: env(safe-area-inset-bottom); border-top: 1px solid var(--color-border); background: rgb(255 255 255 / 0.96); backdrop-filter: blur(18px); }
+  .workspace-bottom-nav { position: fixed; z-index: var(--z-nav); inset: auto 0 0; min-height: 66px; display: grid; grid-template-columns: repeat(4, 1fr); padding-bottom: env(safe-area-inset-bottom); border-top: 1px solid var(--color-border); background: rgb(255 255 255 / 0.96); }
   .workspace-bottom-nav a { min-height: 62px; display: grid; align-content: center; justify-items: center; gap: 2px; color: var(--orin-slate-500); font-size: 9px; font-weight: 700; }
   .workspace-bottom-nav a.is-active { color: var(--orin-blue-600); }
   .workspace-page { padding-inline: 22px; }
@@ -4188,7 +4183,6 @@ h4 {
   border-radius: 20px;
   background: rgb(255 255 255 / 0.86);
   box-shadow: 0 16px 44px rgb(10 23 45 / 0.09), 0 1px 0 rgb(255 255 255 / 0.95) inset;
-  backdrop-filter: blur(22px) saturate(150%);
 }
 
 .marketing-brand-link {
@@ -4702,7 +4696,6 @@ h4 {
   border-radius: 28px;
   background: rgb(255 255 255 / 0.07);
   box-shadow: 0 34px 90px rgb(0 0 0 / 0.28), 0 1px 0 rgb(255 255 255 / 0.08) inset;
-  backdrop-filter: blur(18px);
 }
 
 .extraction-panel__head {
@@ -4827,7 +4820,6 @@ h4 {
   border-radius: 24px;
   background: rgb(255 255 255 / 0.07);
   box-shadow: 0 26px 70px rgb(0 0 0 / 0.22);
-  backdrop-filter: blur(14px);
 }
 
 .login-form-panel {
@@ -6344,38 +6336,20 @@ h4 {
 }
 
 /*
- * `backdrop-filter` promotes a layer for the same reason and, on the fixed
- * marketing header, sat directly over the hero. Every surface that used it is
- * given an opaque background instead, so nothing is composited and nothing
- * depends on what is painted behind it.
+ * `backdrop-filter` promotes a layer for the same reason, and on the fixed
+ * marketing header it sat directly over the hero. Every `backdrop-filter: blur()`
+ * declaration has been deleted at its source rather than overridden here.
+ *
+ * Overriding does not survive the production build: Lightning CSS treats
+ * `backdrop-filter: none` as a redundant initial value and drops it while
+ * keeping the `-webkit-` variant, so the earlier `blur()` went un-overridden in
+ * the minified bundle. The property cleared in dev and persisted in production —
+ * removing the declarations outright is the only reliable fix.
+ *
+ * Surfaces that leaned on translucency get an opaque background instead.
  */
-*,
-*::before,
-*::after {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-/* These carry the property on a class selector, which outranks the universal
-   reset above, so each one has to clear it by name. */
 .marketing-header__inner {
   background: rgb(255 255 255 / 0.98);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.marketing-header,
-.passport-header,
-.hero-float-card,
-.passport-demo-banner,
-.workspace-mobile-header,
-.workspace-bottom-nav,
-.login-form-panel,
-.login-trace-card,
-.extraction-panel,
-.extraction-panel__head {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 .hero-float-card,
