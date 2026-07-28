@@ -4588,6 +4588,11 @@ h4 {
 .section-heading--center {
   max-width: 780px;
   text-align: left;
+  /* The base rule above still sets `justify-items: center`, which centred each
+     child inside this 780px track at its own width — so the eyebrow, heading,
+     and paragraph each landed on a different left edge, none matching the cards
+     below. The editorial layout is left-aligned, so pin the children to start. */
+  justify-items: start;
 }
 
 .section-heading--center h2 {

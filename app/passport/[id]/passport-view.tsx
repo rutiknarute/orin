@@ -16,7 +16,13 @@ import {
 import { BrandLogo } from "@/components/brand-logo";
 import type { Product } from "@/lib/types";
 
-export function PassportView({ product }: { product: Product }) {
+export function PassportView({
+  product,
+  passportUrl,
+}: {
+  product: Product;
+  passportUrl: string;
+}) {
   return (
     <div className="passport-page">
       <div className="passport-demo-banner"><span>Demo product passport</span><p>This record uses illustrative prototype data.</p></div>
@@ -48,7 +54,7 @@ export function PassportView({ product }: { product: Product }) {
                 <div><span><SealCheck size={19} weight="duotone" /></span><p><small>Evidence</small><strong>{product.evidence} verified files</strong></p></div>
               </div>
               <div className="passport-qr-card">
-                <span className="passport-qr"><PassportQr value={`https://orin.example/passport/${product.id}`} /></span>
+                <span className="passport-qr"><PassportQr value={passportUrl} /></span>
                 <span><strong>Digital Product Passport</strong><small>Scan to reopen this verified record</small><code>{product.id}</code></span>
               </div>
             </div>
