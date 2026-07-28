@@ -2,6 +2,10 @@
 
 Orin is a responsive product-intelligence workspace for fashion supply chains. It brings product, supplier, material, certification, and document evidence into one traceable record so teams can spot gaps and prepare Digital Product Passport data.
 
+**Live demo: <https://orin-five.vercel.app>**
+
+Sample product passport: <https://orin-five.vercel.app/passport/OR-24017>
+
 ## Demo account
 
 - Email: `maya@orin.demo`
@@ -43,3 +47,21 @@ npm run build
 - `lib/auth.ts` owns the current demo session boundary and can later be replaced by production identity.
 
 Brand guidance and reusable visual tokens live in `docs/brand-guidelines.md`, `assets/design-tokens.json`, and `assets/design-tokens.css`.
+
+## Deployment
+
+The same source builds for two targets.
+
+- **Vercel** (currently live) runs `next build`, pinned in `vercel.json`. Pushes
+  to `main` deploy automatically.
+- **Cloudflare Workers** is what `npm run build` targets, via `vinext`. It emits
+  `dist/` instead of `.next/` and uses `worker/index.ts` for asset serving and
+  image optimization — which is why `vercel.json` has to override the build
+  command rather than inherit the one in `package.json`.
+
+Supabase credentials are read from `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`
+when set, falling back to the values in `lib/supabase/config.ts`. The publishable
+key is safe to commit: every table has row level security enabled with
+select-only policies. If the catalog read fails or exceeds its timeout, the app
+falls back to the local snapshot in `lib/demo-data.ts`, so the deploy never
+hard-depends on the database being reachable.
