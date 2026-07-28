@@ -14,14 +14,13 @@ import {
   SpinnerGap,
   WarningCircle,
   X,
-} from "@phosphor-icons/react";
-import { evidenceDocuments } from "@/lib/demo-data";
-import type { AnalysisResult } from "@/lib/types";
+} from "@/components/icons";
+import type { AnalysisResult, EvidenceDocument } from "@/lib/types";
 import { StatusPill } from "@/components/status-pill";
 
 const pipeline = ["Upload", "Read", "Extract", "Normalize", "Review"];
 
-export function DocumentLab() {
+export function DocumentLab({ evidence }: { evidence: EvidenceDocument[] }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
   const [dragging, setDragging] = useState(false);
@@ -205,7 +204,7 @@ export function DocumentLab() {
         <div className="evidence-table-wrap">
           <table className="evidence-table">
             <thead><tr><th>Document</th><th>Supplier</th><th>Received</th><th>Fields</th><th>Confidence</th><th>Status</th></tr></thead>
-            <tbody>{evidenceDocuments.map((document, index) => <tr key={document.id}><td><span className={`table-file-icon ${index === 1 ? "table-file-icon--image" : ""}`}>{index === 1 ? <FileImage size={18} /> : <FileText size={18} />}</span><span><strong>{document.title}</strong><small>{document.type}</small></span></td><td>{document.supplier}</td><td>{document.received}</td><td>{document.fields || "—"}</td><td>{document.confidence ? `${document.confidence}%` : "—"}</td><td><StatusPill status={document.status} compact /></td></tr>)}</tbody>
+            <tbody>{evidence.map((document, index) => <tr key={document.id}><td><span className={`table-file-icon ${index === 1 ? "table-file-icon--image" : ""}`}>{index === 1 ? <FileImage size={18} /> : <FileText size={18} />}</span><span><strong>{document.title}</strong><small>{document.type}</small></span></td><td>{document.supplier}</td><td>{document.received}</td><td>{document.fields || "—"}</td><td>{document.confidence ? `${document.confidence}%` : "—"}</td><td><StatusPill status={document.status} compact /></td></tr>)}</tbody>
           </table>
         </div>
       </section>

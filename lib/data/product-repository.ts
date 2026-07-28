@@ -1,23 +1,28 @@
-import { evidenceDocuments, getProduct, products } from "@/lib/demo-data";
+import {
+  getActivity,
+  getEvidence,
+  getProduct,
+  getProducts,
+} from "@/lib/data/catalog";
+import type { ActivityEvent, EvidenceDocument, Product } from "@/lib/types";
 
 export interface ProductRepository {
-  list(): Promise<typeof products>;
-  get(id: string): Promise<ReturnType<typeof getProduct>>;
-  listEvidence(productId: string): Promise<typeof evidenceDocuments>;
+  list(): Promise<Product[]>;
+  get(id: string): Promise<Product | undefined>;
+  listEvidence(productId?: string): Promise<EvidenceDocument[]>;
+  listActivity(): Promise<ActivityEvent[]>;
 }
 
 /**
- * Demo repository used for the prototype. A MongoProductRepository can replace
- * this adapter without changing the page or API contracts.
+ * Supabase-backed product data. Reads go through `lib/data/catalog.ts`, which
+ * keeps one warm copy of the catalog per worker isolate and falls back to the
+ * bundled snapshot when the database is unreachable.
  */
-export const demoProductRepository: ProductRepository = {
-  async list() {
-    return products;
-  },
-  async get(id) {
-    return getProduct(id);
-  },
-  async listEvidence() {
-    return evidenceDocuments;
-  },
+export const productRepository: ProductRepository = {
+  list: getProducts,
+  get: getProduct,
+  // The evidence inbox is workspace-wide today. The parameter is kept so this
+  // seam can narrow to a single product without changing call sites.
+  listEvidence: () => getEvidence(),
+  listActivity: getActivity,
 };

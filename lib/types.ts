@@ -55,6 +55,15 @@ export interface DemoUser {
   initials: string;
 }
 
+export type ActivityTone = "info" | "success" | "warning" | "danger";
+
+export interface ActivityEvent {
+  title: string;
+  detail: string;
+  time: string;
+  tone: ActivityTone;
+}
+
 export interface AnalysisResult {
   id: string;
   filename: string;

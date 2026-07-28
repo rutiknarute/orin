@@ -1,14 +1,19 @@
+import { DEMO_CREDENTIALS } from "@/lib/auth";
 import type {
+  ActivityEvent,
   DemoUser,
   EvidenceDocument,
   Product,
   SupplyChainNode,
 } from "@/lib/types";
 
-export const DEMO_CREDENTIALS = {
-  email: "maya@orin.demo",
-  password: "orin-demo",
-};
+/**
+ * Offline snapshot of the Supabase catalog.
+ *
+ * Supabase is the source of truth (see `lib/data/catalog.ts`); this mirror is
+ * only served when the database is unreachable, so a page render is never
+ * blocked on the network. Keep it in sync with `supabase/migrations`.
+ */
 
 export const DEMO_USER: DemoUser = {
   id: "usr_maya",
@@ -275,7 +280,7 @@ export const evidenceDocuments: EvidenceDocument[] = [
   },
 ];
 
-export const activity = [
+export const activity: ActivityEvent[] = [
   {
     title: "NovaTex uploaded a fabric test report",
     detail: "9 fields extracted · 96% confidence",
@@ -295,7 +300,3 @@ export const activity = [
     tone: "warning",
   },
 ];
-
-export function getProduct(id: string) {
-  return products.find((product) => product.id === id);
-}

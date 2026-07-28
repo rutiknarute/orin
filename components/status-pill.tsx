@@ -1,11 +1,9 @@
-"use client";
-
 import {
   CheckCircle,
   Clock,
   WarningCircle,
   XCircle,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import type { EvidenceStatus, ProductStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 

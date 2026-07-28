@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowRight,
@@ -14,13 +12,17 @@ import {
   StackSimple,
   TrendUp,
   WarningCircle,
-} from "@phosphor-icons/react";
-import { activity, evidenceDocuments, products } from "@/lib/demo-data";
+} from "@/components/icons";
 import { StatusPill } from "@/components/status-pill";
+import type { ActivityEvent, EvidenceDocument, Product } from "@/lib/types";
 
-const product = products[0];
+interface DashboardProps {
+  product: Product;
+  activity: ActivityEvent[];
+  evidence: EvidenceDocument[];
+}
 
-export function DashboardClient() {
+export function Dashboard({ product, activity, evidence }: DashboardProps) {
   return (
     <div className="workspace-page dashboard-page">
       <header className="workspace-page-header">
@@ -191,7 +193,7 @@ export function DashboardClient() {
           <table className="evidence-table">
             <thead><tr><th>Document</th><th>Supplier</th><th>Confidence</th><th>Status</th></tr></thead>
             <tbody>
-              {evidenceDocuments.slice(0, 4).map((document) => (
+              {evidence.slice(0, 4).map((document) => (
                 <tr key={document.id}>
                   <td><span className="table-file-icon"><FileText size={18} /></span><span><strong>{document.title}</strong><small>{document.type}</small></span></td>
                   <td>{document.supplier}</td>

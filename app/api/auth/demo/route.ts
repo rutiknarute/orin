@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SESSION_COOKIE, SESSION_VALUE } from "@/lib/auth";
-import { DEMO_CREDENTIALS, DEMO_USER } from "@/lib/demo-data";
+import { DEMO_CREDENTIALS, SESSION_COOKIE, SESSION_VALUE } from "@/lib/auth";
+import { getCatalog } from "@/lib/data/catalog";
 
 export async function POST(request: NextRequest) {
   const body = (await request.json().catch(() => null)) as
@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const response = NextResponse.json({ user: DEMO_USER });
+  const { user } = await getCatalog();
+  const response = NextResponse.json({ user });
   response.cookies.set(SESSION_COOKIE, SESSION_VALUE, {
     httpOnly: true,
     sameSite: "lax",

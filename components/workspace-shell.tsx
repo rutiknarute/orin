@@ -9,8 +9,7 @@ import {
   Package,
   SignOut,
   SquaresFour,
-} from "@phosphor-icons/react";
-import { BrandLogo } from "@/components/brand-logo";
+} from "@/components/icons";
 import type { DemoUser } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -40,9 +39,6 @@ export function WorkspaceShell({ children, user }: { children: React.ReactNode; 
         Skip to workspace content
       </a>
       <aside className="workspace-sidebar">
-        <Link href="/workspace" className="workspace-logo-link" aria-label="Orin workspace home">
-          <BrandLogo variant="reverse" priority />
-        </Link>
         <div className="workspace-switcher">
           <span className="workspace-switcher__mark">NL</span>
           <span>
@@ -80,9 +76,6 @@ export function WorkspaceShell({ children, user }: { children: React.ReactNode; 
       </aside>
 
       <header className="workspace-mobile-header">
-        <Link href="/workspace" aria-label="Orin workspace home">
-          <BrandLogo />
-        </Link>
         <span className="avatar">{user.initials}</span>
       </header>
 

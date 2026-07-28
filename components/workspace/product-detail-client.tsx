@@ -17,7 +17,7 @@ import {
   SealCheck,
   ShareNetwork,
   WarningCircle,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import { StatusPill } from "@/components/status-pill";
 import type { EvidenceDocument, Product } from "@/lib/types";
 

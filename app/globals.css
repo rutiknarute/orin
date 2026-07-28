@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @import "../assets/design-tokens.css";
 
 :root {
@@ -152,13 +153,12 @@ h4 {
   aspect-ratio: 934 / 429;
 }
 
+/* The shipped PNGs are pre-cropped to the artwork (see
+   scripts/optimize-brand-assets.mjs), so they fill the crop box directly. */
 .brand-logo--wordmark .brand-logo__source {
-  position: absolute;
-  width: 134.26%;
-  max-width: none;
+  display: block;
+  width: 100%;
   height: auto;
-  left: -17.02%;
-  top: -94.41%;
 }
 
 .brand-logo--reverse {
@@ -178,12 +178,9 @@ h4 {
 }
 
 .brand-logo--mark .brand-logo__source {
-  position: absolute;
-  width: 193.22%;
-  max-width: none;
+  display: block;
+  width: 100%;
   height: auto;
-  left: -46.53%;
-  top: -37.86%;
 }
 
 .button,
@@ -6229,10 +6226,13 @@ h4 {
 }
 
 .marketing-brand-link {
-  min-width: 126px;
+  min-width: 72px;
 }
 
-.marketing-brand-link .brand-logo--wordmark,
+.marketing-brand-link .brand-logo--wordmark {
+  width: 60px;
+}
+
 .passport-header__inner .brand-logo {
   width: 120px;
 }
@@ -6246,6 +6246,14 @@ h4 {
   width: 112px;
 }
 
+.workspace-switcher {
+  margin-top: 0;
+}
+
+.workspace-mobile-header {
+  justify-content: flex-end;
+}
+
 .marketing-footer__inner .brand-logo,
 .passport-footer .brand-logo {
   width: 112px;
@@ -6253,11 +6261,13 @@ h4 {
 
 @media (max-width: 640px) {
   .marketing-brand-link {
-    min-width: 118px;
+    min-width: 68px;
   }
 
-  .marketing-brand-link .brand-logo--wordmark,
-  .login-mobile-brand .brand-logo,
+  .marketing-brand-link .brand-logo--wordmark {
+    width: 56px;
+  }
+
   .passport-header__inner .brand-logo {
     width: 112px;
   }

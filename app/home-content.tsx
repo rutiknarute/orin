@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowRight,
@@ -16,7 +14,7 @@ import {
   Sparkle,
   StackSimple,
   WarningCircle,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import { MarketingHeader } from "@/components/marketing-header";
 import { BrandLogo } from "@/components/brand-logo";
 
@@ -40,7 +38,7 @@ const demoFashionClients = [
   { mark: "LW", name: "Lune Works", style: "grounded" },
 ];
 
-export function HomeClient() {
+export function HomeContent() {
   return (
     <div className="marketing-page">
       <MarketingHeader />

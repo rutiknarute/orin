@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import QRCode from "react-qr-code";
+import { PassportQr } from "@/app/passport/[id]/passport-qr";
 import {
   ArrowLeft,
   Check,
@@ -14,11 +12,11 @@ import {
   SealCheck,
   ShieldCheck,
   Sparkle,
-} from "@phosphor-icons/react";
+} from "@/components/icons";
 import { BrandLogo } from "@/components/brand-logo";
 import type { Product } from "@/lib/types";
 
-export function PassportClient({ product }: { product: Product }) {
+export function PassportView({ product }: { product: Product }) {
   return (
     <div className="passport-page">
       <div className="passport-demo-banner"><span>Demo product passport</span><p>This record uses illustrative prototype data.</p></div>
@@ -50,7 +48,7 @@ export function PassportClient({ product }: { product: Product }) {
                 <div><span><SealCheck size={19} weight="duotone" /></span><p><small>Evidence</small><strong>{product.evidence} verified files</strong></p></div>
               </div>
               <div className="passport-qr-card">
-                <span className="passport-qr"><QRCode value={`https://orin.example/passport/${product.id}`} size={76} bgColor="#ffffff" fgColor="#0A172D" /></span>
+                <span className="passport-qr"><PassportQr value={`https://orin.example/passport/${product.id}`} /></span>
                 <span><strong>Digital Product Passport</strong><small>Scan to reopen this verified record</small><code>{product.id}</code></span>
               </div>
             </div>

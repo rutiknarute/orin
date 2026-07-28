@@ -13,10 +13,9 @@ import {
   FileText,
   LinkSimple,
   SpinnerGap,
-} from "@phosphor-icons/react";
-import { BrandLogo } from "@/components/brand-logo";
+} from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { DEMO_CREDENTIALS } from "@/lib/demo-data";
+import { DEMO_CREDENTIALS } from "@/lib/auth";
 
 export function LoginClient() {
   const router = useRouter();
@@ -69,9 +68,6 @@ export function LoginClient() {
     <main className="login-page">
       <section className="login-story" aria-label="Orin product overview">
         <div className="login-story__grid" aria-hidden="true" />
-        <Link href="/" className="login-story__brand" aria-label="Return to Orin home">
-          <BrandLogo variant="reverse" priority />
-        </Link>
         <div className="login-story__content">
           <span className="login-story__eyebrow"><span /> Demo workspace</span>
           <h1>Follow every answer back to its source.</h1>
@@ -107,7 +103,6 @@ export function LoginClient() {
       <section className="login-form-panel">
         <div className="login-form-wrap">
           <Link href="/" className="back-link"><ArrowLeft size={17} /> Back to Orin</Link>
-          <div className="login-mobile-brand"><BrandLogo priority /></div>
           <div className="login-heading">
             <span>Welcome to the demo</span>
             <h2>Sign in to Orin</h2>

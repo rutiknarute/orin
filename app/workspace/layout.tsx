@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { WorkspaceShell } from "@/components/workspace-shell";
-import { getDemoUser, isDemoSession, SESSION_COOKIE } from "@/lib/auth";
+import { isDemoSession, SESSION_COOKIE } from "@/lib/auth";
+import { getCatalog } from "@/lib/data/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -16,5 +17,6 @@ export default async function WorkspaceLayout({ children }: { children: React.Re
   if (!isDemoSession(cookieStore.get(SESSION_COOKIE)?.value)) {
     redirect("/login");
   }
-  return <WorkspaceShell user={getDemoUser()}>{children}</WorkspaceShell>;
+  const { user } = await getCatalog();
+  return <WorkspaceShell user={user}>{children}</WorkspaceShell>;
 }

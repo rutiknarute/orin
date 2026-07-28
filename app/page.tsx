@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HomeClient } from "@/app/home-client";
+import { HomeContent } from "@/app/home-content";
 
 export const metadata: Metadata = {
   title: { absolute: "Orin — Every supplier answer. One trusted product record." },
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <HomeClient />;
+  return <HomeContent />;
 }
