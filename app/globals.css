@@ -6277,3 +6277,57 @@ h4 {
     width: 112px;
   }
 }
+
+/* ========================================================================== */
+/* Compositing safety net                                                     */
+/* ========================================================================== */
+
+/*
+ * The decorative layers in the hero, final CTA, passport hero, and login story
+ * are absolutely positioned siblings that sit BEFORE the content in the DOM,
+ * and every one of them — decoration and content alike — resolved to
+ * `z-index: auto`. That made correct painting depend purely on DOM order.
+ *
+ * Two of those decorations also carry properties that promote them onto their
+ * own GPU compositing layer (`mask-image` on the grids, `filter: blur()` on the
+ * orbs). Once a layer is promoted, paint order is resolved by the compositor
+ * rather than by document order, so on some GPU/driver combinations a promoted
+ * decoration can end up over content that never declared a stacking position.
+ * The symptom is a section that measures and hydrates correctly but paints
+ * blank — and only on some machines, which is exactly why it did not reproduce
+ * in headless Chrome, in headed Chrome, at any viewport, or in dark mode.
+ *
+ * Declaring the order explicitly removes the ambiguity: decorations at 0,
+ * content at 1. The blur on the orbs is dropped as well — they are already soft
+ * translucent circles, so it costs nothing visually and removes a promoted
+ * layer entirely.
+ */
+
+.hero-grid,
+.final-cta__grid,
+.passport-hero__grid,
+.login-story__grid {
+  z-index: 0;
+  /* Safari and older Chromium still want the prefixed form. */
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.hero-orb {
+  z-index: 0;
+  filter: none;
+}
+
+.hero-layout,
+.passport-hero__inner,
+.login-story__content,
+.problem-strip__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* `.final-cta` has no content wrapper — its copy sits as direct children
+   alongside the decorative grid — so lift every child except the grid. */
+.final-cta > *:not(.final-cta__grid) {
+  position: relative;
+  z-index: 1;
+}
