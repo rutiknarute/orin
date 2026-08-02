@@ -146,7 +146,7 @@ function validateDocumentName(value) {
   return filename;
 }
 
-export async function createAppServer({
+export async function createRequestListener({
   sessions = new Map(),
   runtime = { savedEvidence: [], reminders: [] },
   persistRuntime = async () => {},
@@ -182,7 +182,7 @@ export async function createAppServer({
     }
   }
 
-  return createServer(async (req, res) => {
+  return async (req, res) => {
     const method = req.method ?? "GET";
     const url = new URL(req.url ?? "/", "http://localhost");
     const pathname = url.pathname;
@@ -360,7 +360,11 @@ export async function createAppServer({
         res.end();
       }
     }
-  });
+  };
+}
+
+export async function createAppServer(options = {}) {
+  return createServer(await createRequestListener(options));
 }
 
 async function existingOrinServer(port) {
@@ -389,13 +393,22 @@ async function loadRuntimeStore() {
   }
 }
 
+let runtimeStoreWritable = true;
+
 function persistRuntimeStore(runtime) {
+  if (!runtimeStoreWritable) return Promise.resolve();
   const snapshot = `${JSON.stringify(runtime, null, 2)}\n`;
   const write = runtimeWriteQueue.catch(() => {}).then(async () => {
     await mkdir(dirname(RUNTIME_STORE), { recursive: true });
     const temporaryStore = `${RUNTIME_STORE}.${process.pid}.tmp`;
-    await writeFile(temporaryStore, snapshot, { mode: 0o600 });
-    await rename(temporaryStore, RUNTIME_STORE);
+    try {
+      await writeFile(temporaryStore, snapshot, { mode: 0o600 });
+      await rename(temporaryStore, RUNTIME_STORE);
+    } catch (error) {
+      if (!["EROFS", "EACCES", "EPERM"].includes(error.code)) throw error;
+      runtimeStoreWritable = false;
+      console.warn("Filesystem is read-only; saved evidence will live in memory for this instance only.");
+    }
   });
   runtimeWriteQueue = write;
   return write;

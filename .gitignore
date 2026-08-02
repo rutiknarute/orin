@@ -8,3 +8,4 @@ output/
 tmp/
 npm-debug.log*
 data/runtime.json
+.vercel
