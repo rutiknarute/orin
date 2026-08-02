@@ -1,67 +1,50 @@
 # Orin
 
-Orin is a responsive product-intelligence workspace for fashion supply chains. It brings product, supplier, material, certification, and document evidence into one traceable record so teams can spot gaps and prepare Digital Product Passport data.
-
-**Live demo: <https://orin-five.vercel.app>**
-
-Sample product passport: <https://orin-five.vercel.app/passport/OR-24017>
-
-## Demo account
-
-- Email: `maya@orin.demo`
-- Password: `orin-demo`
-
-The demo uses an HTTP-only session cookie and deterministic in-memory data. It is intentionally separated from the persistence and AI interfaces so MongoDB and a Llama-backed document analyzer can be connected later without rebuilding the UI.
+Orin is a dependency-free local full-stack product-compliance workspace. One Node.js process serves the interface and API, so there is no separate frontend, hosted database, UI CDN, or external runtime to configure.
 
 ## Run locally
 
-Requires Node.js `>=22.13.0`.
+Requirements: Node.js 22.13 or newer.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the URL printed by the dev server. Useful checks:
+Open [http://localhost:3000](http://localhost:3000).
+
+Demo credentials:
+
+- Email: `maya@orin.demo`
+- Password: `orin-demo`
+
+If port 3000 belongs to another application, use:
 
 ```bash
-npm run lint
-npm test
-npm run build
+PORT=3001 npm run dev
 ```
 
-## Product surfaces
+Starting Orin twice on the same port is safe: the second command reports that Orin is already running instead of throwing an `EADDRINUSE` stack trace.
 
-- Public product story and problem framing
-- Demo authentication
-- Traceability dashboard
-- Product catalog and evidence detail
-- Document extraction lab with a replaceable AI adapter
-- Public Digital Product Passport preview
-- Protected JSON APIs for products, session state, and document analysis
+Editing `public/index.html`, `public/app.css`, or `public/app.js` takes effect on the next page reload — no restart needed. Set `NODE_ENV=production` to serve the copies held in memory from startup instead.
 
-## Integration seams
+## Interface
 
-- `lib/data/product-repository.ts` defines the product data interface and demo repository. Add a MongoDB implementation there.
-- `lib/ai/document-analyzer.ts` defines the document intelligence interface and demo analyzer. Add the Llama provider implementation there.
-- `lib/auth.ts` owns the current demo session boundary and can later be replaced by production identity.
+The UI is plain HTML, CSS, and ES modules. There is no build step, framework, icon package, or web font: icons are inline SVG and type uses the system font stack, so the interface renders identically whether or not the machine is online.
 
-Brand guidance and reusable visual tokens live in `docs/brand-guidelines.md`, `assets/design-tokens.json`, and `assets/design-tokens.css`.
+`public/app.css` is organised as a design system. Colour, type scale, weight, spacing, radius, and elevation are declared once as custom properties at the top of the file, and every rule below draws from them — no literal colours or one-off font sizes appear outside `:root`.
 
-## Deployment
+The palette is a white page with near-black text and a single brand accent, `#ff5888` (`--pink-400`), reserved for buttons, the active nav item, and small accent marks. It is deliberately not used for body copy: `#ff5888` reaches only 3.0:1 against white, which is below the 4.5:1 needed for normal-size text.
 
-The same source builds for two targets.
+The landing page illustration lives at `public/hero-supply-chain.jpg`. It is declared as an optional asset: if the file is missing the server logs a notice and serves 404 for that one path instead of failing to start.
 
-- **Vercel** (currently live) runs `next build`, pinned in `vercel.json`. Pushes
-  to `main` deploy automatically.
-- **Cloudflare Workers** is what `npm run build` targets, via `vinext`. It emits
-  `dist/` instead of `.next/` and uses `worker/index.ts` for asset serving and
-  image optimization — which is why `vercel.json` has to override the build
-  command rather than inherit the one in `package.json`.
+Chrome that floats over scrolling content — the marketing and passport navbars, the workspace header, the mobile tab bar, and the toast — uses a translucent `backdrop-filter` surface driven by the `--glass-*` tokens. The translucency is held at 78% so those surfaces stay legible in browsers that do not support `backdrop-filter`.
 
-Supabase credentials are read from `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`
-when set, falling back to the values in `lib/supabase/config.ts`. The publishable
-key is safe to commit: every table has row level security enabled with
-select-only policies. If the catalog read fails or exceeds its timeout, the app
-falls back to the local snapshot in `lib/demo-data.ts`, so the deploy never
-hard-depends on the database being reachable.
+## Verify
+
+```bash
+npm run check
+npm test
+```
+
+The app includes local session authentication, product and evidence APIs, document analysis, product records, and public digital product passports. Saved evidence and queued reminders persist locally in the ignored `data/runtime.json` file; no hosted database is required.
