@@ -1,5 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run check",
+  "installCommand": "npm install",
+  "outputDirectory": "public",
+  "functions": {
+    "api/server.mjs": {
+      "includeFiles": "public/**"
+    }
+  },
   "rewrites": [{ "source": "/(.*)", "destination": "/api/server" }],
   "headers": [
     {
