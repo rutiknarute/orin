@@ -265,8 +265,11 @@ const chatIntro =
 function chatWidget() {
   if (!state.chatOpen) {
     return `
-      <button class="chat-launcher" type="button" data-action="chat-open" aria-label="Open the Orin assistant">
-        ${icon("sparkle")}
+      <button class="chat-launcher" type="button" data-action="chat-open">
+        <span class="chat-launcher__mark" aria-hidden="true">
+          <img src="/logo-orin.png" alt="" width="256" height="256" decoding="async" />
+        </span>
+        <span class="chat-launcher__label">Ask Orin</span>
       </button>`;
   }
 
@@ -278,23 +281,27 @@ function chatWidget() {
     .join("");
 
   return `
-    <section class="chat-panel${state.chatExpanded ? " chat-panel--expanded" : ""}" role="dialog" aria-label="Orin assistant">
+    <section class="chat-panel${state.chatExpanded ? " chat-panel--expanded" : ""}" role="dialog" aria-label="Ask Orin">
       <div class="chat-panel__top">
-        <img class="chat-orb" src="/logo-orin.png" alt="" width="256" height="256" decoding="async" />
-        <span>Orin assistant</span>
-        <button
-          class="chat-expand"
-          type="button"
-          data-action="chat-expand"
-          aria-expanded="${state.chatExpanded}"
-          aria-label="${state.chatExpanded ? "Shrink the assistant" : "Expand the assistant"}"
-          title="${state.chatExpanded ? "Shrink" : "Expand"}"
-        >
-          ${icon(state.chatExpanded ? "collapse" : "expand")}
-        </button>
-        <button class="chat-close" type="button" data-action="chat-close" aria-label="Close the assistant">
-          ${icon("plus")}
-        </button>
+        <span class="chat-orb" aria-hidden="true">
+          <img src="/logo-orin.png" alt="" width="256" height="256" decoding="async" />
+        </span>
+        <span>Ask Orin</span>
+        <div class="chat-panel__controls">
+          <button
+            class="chat-expand"
+            type="button"
+            data-action="chat-expand"
+            aria-expanded="${state.chatExpanded}"
+            aria-label="${state.chatExpanded ? "Shrink the assistant" : "Expand the assistant"}"
+            title="${state.chatExpanded ? "Shrink" : "Expand"}"
+          >
+            ${icon(state.chatExpanded ? "collapse" : "expand")}
+          </button>
+          <button class="chat-close" type="button" data-action="chat-close" aria-label="Close the assistant">
+            ${icon("plus")}
+          </button>
+        </div>
       </div>
       <div class="chat-body">
         <p class="chat-intro">${escapeHtml(chatIntro)}</p>

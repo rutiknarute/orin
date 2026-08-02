@@ -1218,14 +1218,18 @@ ol {
 
 /* --- Assistant widget ---------------------------------------------------- */
 
+/* A labelled pill rather than a bare orb, so the entry point says what it is
+   before it is clicked. */
 .chat-launcher {
   position: fixed;
   z-index: 80;
   right: var(--space-6);
   bottom: var(--space-6);
-  display: grid;
-  width: 56px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   height: 56px;
+  padding: 0 var(--space-5) 0 var(--space-2);
   border-radius: var(--radius-full);
   background: linear-gradient(
     180deg,
@@ -1237,7 +1241,6 @@ ol {
     inset 0 1px 0 rgb(255 255 255 / 52%),
     0 10px 26px rgb(255 88 136 / 42%);
   color: var(--paper-0);
-  place-items: center;
   transition: transform var(--duration) var(--ease);
 }
 
@@ -1245,9 +1248,30 @@ ol {
   transform: translateY(-2px);
 }
 
-.chat-launcher .icon {
-  width: 22px;
-  height: 22px;
+/* The mark is pink on transparent, so it needs a light disc to read against
+   the pill. */
+.chat-launcher__mark {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: var(--radius-full);
+  background: var(--paper-0);
+  place-items: center;
+}
+
+.chat-launcher__mark img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.chat-launcher__label {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 1px rgb(150 12 52 / 32%);
+  white-space: nowrap;
 }
 
 .chat-panel {
@@ -1256,7 +1280,8 @@ ol {
   right: var(--space-6);
   bottom: var(--space-6);
   display: grid;
-  width: min(360px, calc(100vw - 2 * var(--space-5)));
+  width: min(380px, calc(100vw - 2 * var(--space-5)));
+  max-height: calc(100vh - 2 * var(--space-6));
   gap: var(--space-3);
   padding: var(--space-5);
   border: 1px solid var(--border-subtle);
@@ -1276,34 +1301,63 @@ ol {
 }
 
 .chat-orb {
-  width: 26px;
-  height: 26px;
-  flex: 0 0 auto;
-  object-fit: contain;
-}
-
-/* Expand affordance stays hidden until the panel is hovered or the control is
-   focused, so it never competes with the conversation. */
-.chat-expand {
   display: grid;
   width: 26px;
   height: 26px;
-  margin-left: auto;
-  border-radius: var(--radius-full);
-  color: var(--text-muted);
-  opacity: 0;
+  flex: 0 0 auto;
   place-items: center;
-  transition: opacity var(--duration) var(--ease),
-    background var(--duration) var(--ease), color var(--duration) var(--ease);
 }
 
-.chat-panel:hover .chat-expand,
-.chat-expand:focus-visible,
-.chat-panel--expanded .chat-expand {
+.chat-orb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Expand and close ride together in a floating pill that stays out of the way
+   until the panel is hovered or one of its buttons takes focus. */
+.chat-panel__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  padding: 3px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  background: var(--surface-plain);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease);
+}
+
+.chat-panel:hover .chat-panel__controls,
+.chat-panel__controls:focus-within,
+.chat-panel--expanded .chat-panel__controls {
   opacity: 1;
 }
 
-.chat-expand:hover {
+/* Without hover there is no way to reveal the pill, so it stays put — losing
+   the close button on touch would trap the panel open. */
+@media (hover: none) {
+  .chat-panel__controls {
+    opacity: 1;
+  }
+}
+
+.chat-expand,
+.chat-close {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  place-items: center;
+  transition: background var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.chat-expand:hover,
+.chat-close:hover {
   background: var(--surface-sunken);
   color: var(--text-primary);
 }
@@ -1313,20 +1367,6 @@ ol {
   height: 14px;
 }
 
-.chat-close {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  border-radius: var(--radius-full);
-  color: var(--text-muted);
-  place-items: center;
-}
-
-.chat-close:hover {
-  background: var(--surface-sunken);
-  color: var(--text-primary);
-}
-
 /* The close affordance reuses the plus glyph turned 45°. */
 .chat-close .icon {
   width: 15px;
@@ -1334,20 +1374,22 @@ ol {
   transform: rotate(45deg);
 }
 
-.chat-panel--expanded {
-  width: min(560px, calc(100vw - 2 * var(--space-5)));
-}
-
 .chat-body {
   display: grid;
   overflow-y: auto;
   max-height: 240px;
   gap: var(--space-3);
-  transition: max-height var(--duration) var(--ease);
+  align-content: start;
+  transition: height var(--duration) var(--ease);
 }
 
+/* Expanding grows the panel upward from its fixed bottom edge — the width is
+   deliberately left alone so the panel never spreads across the page. The
+   height is set rather than capped, so the panel visibly grows even when the
+   conversation is only a line or two long. */
 .chat-panel--expanded .chat-body {
-  max-height: 420px;
+  height: min(58vh, 480px);
+  max-height: none;
 }
 
 .chat-intro,
@@ -1444,24 +1486,33 @@ ol {
   }
 }
 
-/* --- Results strip ------------------------------------------------------- */
+/* --- Results strip -------------------------------------------------------
+   Square cells that share hairline dividers, so the four numbers read as one
+   ruled band rather than four floating cards. */
 
 .marketing-strip {
   display: grid;
   width: min(var(--page-max), calc(100% - 2 * var(--gutter)));
-  gap: var(--space-4);
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0 auto;
-  padding: var(--space-10) 0;
+  margin: 0 auto var(--space-16);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .marketing-strip div {
   display: grid;
-  gap: var(--space-1);
-  padding: var(--space-5);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--surface-card);
+  aspect-ratio: 1 / 1;
+  align-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-left: 1px solid var(--border-subtle);
+  justify-items: center;
+  text-align: center;
+}
+
+/* The rules above and below close the band, so its outer edge needs no line. */
+.marketing-strip div:first-child {
+  border-left: 0;
 }
 
 .marketing-strip strong {
@@ -1472,7 +1523,8 @@ ol {
 }
 
 .marketing-strip span {
-  color: var(--text-inverse-muted);
+  max-width: 20ch;
+  color: var(--text-secondary);
   font-size: var(--text-sm);
 }
 
@@ -3728,9 +3780,23 @@ ol {
     margin: 0 auto;
   }
 
+  /* Two per row: the dividers move with the wrap so no cell is left with a
+     dangling line. Half-width squares would run to ~370px tall, so the cells
+     flatten a little here rather than stretching the section. */
   .marketing-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
+  }
+
+  .marketing-strip div {
+    aspect-ratio: 3 / 2;
+  }
+
+  .marketing-strip div:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .marketing-strip div:nth-child(n + 3) {
+    border-top: 1px solid var(--border-subtle);
   }
 
   .flow-grid {
@@ -3873,9 +3939,20 @@ ol {
     width: 100%;
   }
 
+  /* One per row — a full-width square would be enormous, so the cells become
+     short bands instead. */
   .marketing-strip {
     grid-template-columns: minmax(0, 1fr);
-    text-align: left;
+  }
+
+  .marketing-strip div {
+    aspect-ratio: auto;
+    min-height: 132px;
+    border-left: 0;
+  }
+
+  .marketing-strip div + div {
+    border-top: 1px solid var(--border-subtle);
   }
 
   .marketing-cta {
