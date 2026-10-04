@@ -1564,10 +1564,47 @@ ol {
 }
 
 .flow-card {
+  --elastic-x: 0;
+  --elastic-y: 0;
+  --elastic-strength: 0;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  isolation: isolate;
   padding: var(--space-6) var(--space-7) var(--space-7);
   border-right: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transform: translate3d(
+      calc(var(--elastic-x) * 4px),
+      calc(var(--elastic-y) * 4px),
+      0
+    )
+    rotateX(calc(var(--elastic-y) * -1.8deg))
+    rotateY(calc(var(--elastic-x) * 1.8deg));
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.flow-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgb(255 88 136 / calc(10% * var(--elastic-strength))),
+    transparent 34%
+  );
+  content: "";
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.flow-card:hover {
+  box-shadow: 0 14px 30px rgb(13 13 16 / 7%);
 }
 
 .flow-card:last-child {
@@ -1582,12 +1619,27 @@ ol {
   border-radius: var(--radius-md);
   background: var(--surface-sunken);
   place-items: center;
+  transform: translateZ(0);
 }
 
 .flow-art {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 520ms ease;
+}
+
+.flow-card:hover .flow-art {
+  transform: scale(1.035);
+  filter: saturate(1.06) contrast(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-card,
+  .flow-art {
+    transform: none;
+    transition: none;
+  }
 }
 
 .flow-card__kicker {

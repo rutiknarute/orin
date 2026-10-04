@@ -399,7 +399,7 @@ function landingPage() {
               <h2>From supplier file to passport, in one clean flow.</h2>
               <p>Orin keeps the work understandable: collect evidence, resolve the gaps, and publish a passport customers can trust.</p>
             </div>
-            <div class="flow-grid">
+            <div class="flow-grid flow-grid--elastic" data-elastic-grid>
               ${flowSteps
                 .map(
                   (step) => `
@@ -1027,6 +1027,38 @@ document.addEventListener("change", (event) => {
 });
 
 window.addEventListener("popstate", render);
+
+// Elastic Grid interaction for the marketing workflow cards. The effect is
+// deliberately CSS-variable driven so it stays cheap, survives re-renders,
+// and naturally falls back to the regular grid on touch/reduced-motion.
+document.addEventListener("pointermove", (event) => {
+  const grid = event.target.closest?.("[data-elastic-grid]");
+  if (!grid || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const cards = [...grid.querySelectorAll(".flow-card")];
+  cards.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+    const distance = Math.hypot(event.clientX - (rect.left + rect.width / 2), event.clientY - (rect.top + rect.height / 2));
+    const influence = Math.max(0, 1 - distance / Math.max(rect.width, rect.height));
+    card.style.setProperty("--elastic-x", `${((x - 0.5) * 2 * influence).toFixed(3)}`);
+    card.style.setProperty("--elastic-y", `${((y - 0.5) * 2 * influence).toFixed(3)}`);
+    card.style.setProperty("--elastic-strength", influence.toFixed(3));
+    card.style.setProperty("--pointer-x", `${(x * 100).toFixed(2)}%`);
+    card.style.setProperty("--pointer-y", `${(y * 100).toFixed(2)}%`);
+  });
+});
+
+document.addEventListener("pointerleave", (event) => {
+  const grid = event.target.closest?.("[data-elastic-grid]");
+  if (!grid) return;
+  grid.querySelectorAll(".flow-card").forEach((card) => {
+    card.style.removeProperty("--elastic-x");
+    card.style.removeProperty("--elastic-y");
+    card.style.removeProperty("--elastic-strength");
+  });
+}, true);
 
 async function initialize() {
   try {
